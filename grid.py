@@ -1,5 +1,6 @@
 import random
 from tile import Tile
+from colorama import Fore, Style, Back
 
 checkingGrid = [[-1,1],[0,1],[1,1],[-1,0],[1,0],[-1,-1],[0,-1],[1,-1]]
 class Grid:
@@ -52,9 +53,9 @@ class Grid:
             return False
         
     def gameOver(self):
-        print('  ' + ' '.join([str(x) for x in range(self.width)]))
+        print(f'{Fore.BLACK}{Back.WHITE}  ' + ' '.join([str(x) for x in range(self.width)])+f'{Style.RESET_ALL}')
         for y in range(self.height):
-            row = str(y) + " "
+            row = f"{Fore.BLACK}{Back.WHITE}{str(y)}{Style.RESET_ALL} "
             for x in range(self.width):
                 tile = self.grid[x][y]
                 tile.revealed = True

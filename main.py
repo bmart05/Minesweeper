@@ -1,4 +1,5 @@
 from grid import Grid
+from colorama import Fore,Back,Style
 
 width = 8
 height = 8
@@ -9,9 +10,9 @@ grid = Grid(width,height,noMines)
 running = True
 
 while running:
-    print('  ' + ' '.join([str(x) for x in range(width)]))
+    print(f'{Fore.BLACK}{Back.WHITE}  ' + ' '.join([str(x) for x in range(width)])+f'{Style.RESET_ALL}')
     for y in range(grid.height):
-        row = str(y) + " "
+        row = f"{Fore.BLACK}{Back.WHITE}{str(y)}{Style.RESET_ALL} "
         for x in range(grid.width):
             tile = grid.grid[x][y]
             row += tile.draw() + " "

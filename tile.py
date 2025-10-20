@@ -10,7 +10,7 @@ class Tile:
     def draw(self):
         if self.revealed:
             if self.containsMine:
-                return f"{Fore.BLACK}{Back.WHITE}*{Style.RESET_ALL}" # red text
+                return f"*" # red text
             if self.neighbouringMines>0:
                 color = Fore.CYAN
                 if self.neighbouringMines == 1: color = Fore.BLUE
