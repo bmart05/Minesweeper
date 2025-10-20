@@ -2,8 +2,10 @@ import random
 from tile import Tile
 from colorama import Fore, Style, Back
 
+
 checkingGrid = [[-1,1],[0,1],[1,1],[-1,0],[1,0],[-1,-1],[0,-1],[1,-1]]
-rowNum = "0123456789ABCDEF"
+rowNum = "0123456789ABCDEFGHIJKLMNOPQRSTUV"
+
 class Grid:
     def __init__(self,width,height,mines):
         self.width = width
@@ -17,10 +19,11 @@ class Grid:
     def setup(self):
         # initialize grid
         self.grid = [] # clear grid if resetting
-        for y in range(self.height):
+        for x in range(self.width):
             row = []
-            for x in range(self.width):
+            for y in range(self.height):
                 tile = Tile()
+
                 row.append(tile)
             self.grid.append(row)
 
@@ -46,8 +49,8 @@ class Grid:
                 tile = self.grid[x][y]
                 if tile.revealed:
                     total += 1
-                if tile.flagged and tile.containsMine:
-                    total +=1
+                elif tile.flagged and tile.containsMine:
+                    total += 1
         if total == (self.width*self.height): # all tiles
             return True
         else:

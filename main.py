@@ -1,4 +1,4 @@
-from grid import Grid
+from grid import Grid, rowNum
 from colorama import Fore,Back,Style
 
 width = 0
@@ -7,7 +7,7 @@ noMines = 0
 
 while True:
 
-    difficulty = input("Welcome to Minesweeper! What difficulty would you like: easy(8x8), medium(16x16) ")
+    difficulty = input("Welcome to Minesweeper! What difficulty would you like: easy(8x8), medium(16x16), hard(30x16) ")
 
     if difficulty == "easy":
         width = 8
@@ -19,13 +19,18 @@ while True:
         height = 16
         noMines = 40
         break
+    elif difficulty == "hard":
+        width = 30
+        height = 16
+        noMines = 99
+        break
     else:
         print("Invalid difficulty, pick again")
 
 
 totalMoves = 0
 grid = Grid(width,height,noMines)
-rowNum = "0123456789ABCDEF"
+
 
 running = True
 
@@ -37,16 +42,18 @@ while running:
             tile = grid.grid[x][y]
             row += tile.draw() + " "
         print(row + f"{Fore.BLACK}{Back.WHITE} {Style.RESET_ALL} ")
-    finished = grid.checkFinished()
+
+    finished = grid.checkFinished() # checks to see if all tiles are revealed and all mines are flagged
     if finished:
         print(f"Congratulations, you got all the mines in {totalMoves} moves!")
         running = False
         continue
 
-    command = input("Type f{x,y} for flag or c{x,y} to check")
-    x = int(command[1],16)
-    y = int(command[2],16)
-    if command[0] == 'c':
+    command = input("Type f{x,y} for flag or c{x,y} to check").upper()
+    x = rowNum.find(command[1])
+    y = rowNum.find(command[2])
+    print(f"{x}:{y}")
+    if command[0] == 'C':
         if totalMoves == 0:
             safeMove = False
             while not safeMove: # regenerate all mines if the move contains a mine, do this until they don't
@@ -58,7 +65,7 @@ while running:
             print("You hit a mine. Game over!")
             grid.gameOver()
             running = False
-    elif command[0] == 'f':
+    elif command[0] == 'F':
         grid.toggleFlag(x,y)
     else:
         print("Invalid command")
