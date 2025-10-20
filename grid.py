@@ -15,6 +15,7 @@ class Grid:
 
     def setup(self):
         # initialize grid
+        self.grid = [] # clear grid if resetting
         for y in range(self.height):
             row = []
             for x in range(self.width):
@@ -53,14 +54,14 @@ class Grid:
             return False
         
     def gameOver(self):
-        print(f'{Fore.BLACK}{Back.WHITE}  ' + ' '.join([str(x) for x in range(self.width)])+f'{Style.RESET_ALL}')
+        print(f'{Fore.BLACK}{Back.WHITE}  ' + ' '.join([str(x) for x in range(self.width)])+f'  {Style.RESET_ALL}')
         for y in range(self.height):
             row = f"{Fore.BLACK}{Back.WHITE}{str(y)}{Style.RESET_ALL} "
             for x in range(self.width):
                 tile = self.grid[x][y]
                 tile.revealed = True
                 row += tile.draw() + " "
-            print(row)
+            print(row + f"{Fore.BLACK}{Back.WHITE} {Style.RESET_ALL} ")
 
     def calculateNeighbouringMines(self,x,y):
         # check [x,y+1],[x+1,y+1],[x+1,y],[x+1,y-1],[x,y-1],[x-1,y-1],[x-1,y],[x-1,y+1]
