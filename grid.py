@@ -4,7 +4,7 @@ from colorama import Fore, Style, Back
 
 
 checkingGrid = [[-1,1],[0,1],[1,1],[-1,0],[1,0],[-1,-1],[0,-1],[1,-1]]
-rowNum = "0123456789ABCDEFGHIJKLMNOPQRSTUV"
+rowNum = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 
 class Grid:
     def __init__(self,width,height,mines):

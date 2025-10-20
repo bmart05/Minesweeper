@@ -7,7 +7,7 @@ noMines = 0
 
 while True:
 
-    difficulty = input("Welcome to Minesweeper! What difficulty would you like: easy(8x8), medium(16x16), hard(30x16) ")
+    difficulty = input("Welcome to Minesweeper! What difficulty would you like: easy(8x8), medium(16x16), hard(30x16), impossible(36x36) ")
 
     if difficulty == "easy":
         width = 8
@@ -23,6 +23,11 @@ while True:
         width = 30
         height = 16
         noMines = 99
+        break
+    elif difficulty == "impossible":
+        width = 36
+        height = 36
+        noMines = 260
         break
     else:
         print("Invalid difficulty, pick again")
