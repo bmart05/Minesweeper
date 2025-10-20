@@ -3,6 +3,7 @@ from tile import Tile
 from colorama import Fore, Style, Back
 
 checkingGrid = [[-1,1],[0,1],[1,1],[-1,0],[1,0],[-1,-1],[0,-1],[1,-1]]
+rowNum = "0123456789ABCDEF"
 class Grid:
     def __init__(self,width,height,mines):
         self.width = width
@@ -20,7 +21,6 @@ class Grid:
             row = []
             for x in range(self.width):
                 tile = Tile()
-                tile.revealed = False
                 row.append(tile)
             self.grid.append(row)
 
@@ -54,9 +54,9 @@ class Grid:
             return False
         
     def gameOver(self):
-        print(f'{Fore.BLACK}{Back.WHITE}  ' + ' '.join([str(x) for x in range(self.width)])+f'  {Style.RESET_ALL}')
+        print(f'{Fore.BLACK}{Back.WHITE}  ' + ' '.join([rowNum[x] for x in range(self.width)])+f'  {Style.RESET_ALL}')
         for y in range(self.height):
-            row = f"{Fore.BLACK}{Back.WHITE}{str(y)}{Style.RESET_ALL} "
+            row = f"{Fore.BLACK}{Back.WHITE}{rowNum[y]}{Style.RESET_ALL} "
             for x in range(self.width):
                 tile = self.grid[x][y]
                 tile.revealed = True
