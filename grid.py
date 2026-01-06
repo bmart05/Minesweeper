@@ -112,3 +112,6 @@ class Grid:
             tile.revealed = True         
         else:
             return
+        
+    def draw():
+        pass
