@@ -20,7 +20,7 @@ class Tile:
             if self.containsMine:
                 colour = (255,255,0)
                 tile_text = "*"
-            if self.neighbouringMines>0:
+            elif self.neighbouringMines>0:
                 colour = (0,100,255)
                 tile_text = str(self.neighbouringMines)
                 if self.neighbouringMines == 1: colour = (0,0,255)

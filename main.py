@@ -48,11 +48,11 @@ running = True
 
 while running:\
 
-    # finished = grid.checkFinished() # checks to see if all tiles are revealed and all mines are flagged
-    # if finished:
-    #     print(f"Congratulations, you got all the mines in {totalMoves} moves!")
-    #     running = False
-    #     continue
+    finished = grid.checkFinished() # checks to see if all tiles are revealed and all mines are flagged
+    if finished:
+        print(f"Congratulations, you got all the mines in {totalMoves} moves!")
+        #running = False
+        #continue
 
 
     #rendering
