@@ -1,5 +1,5 @@
 import random
-from tile import Tile
+from tile import *
 from colorama import Fore, Style, Back
 
 
@@ -40,6 +40,7 @@ class Grid:
         for y in range(self.height):
             for x in range(self.width):
                 tile = self.grid[x][y]
+                tile.revealed = True
                 tile.neighbouringMines = self.calculateNeighbouringMines(x,y)
 
     def checkFinished(self):
@@ -113,5 +114,8 @@ class Grid:
         else:
             return
         
-    def draw():
-        pass
+    def draw(self, surface):
+        for y in range(self.height):
+            for x in range(self.width):
+                tile = self.grid[x][y]
+                tile.draw(surface,x*TILE_WIDTH,y*TILE_HEIGHT)

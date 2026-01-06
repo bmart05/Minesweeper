@@ -1,4 +1,5 @@
 from grid import Grid, rowNum
+from tile import TILE_WIDTH, TILE_HEIGHT
 import pygame
 
 width = 8
@@ -32,8 +33,12 @@ noMines = 10
 #     else:
 #         print("Invalid difficulty, pick again")
 
+SCREEN_WIDTH = width*TILE_WIDTH
+SCREEN_HEIGHT = height*TILE_HEIGHT
+
 pygame.init()
-screen = pygame.display.set_mode((800,800))
+pygame.font.init()
+screen = pygame.display.set_mode((SCREEN_WIDTH,SCREEN_HEIGHT))
 
 totalMoves = 0
 grid = Grid(width,height,noMines)
@@ -43,17 +48,19 @@ running = True
 
 while running:\
 
-    finished = grid.checkFinished() # checks to see if all tiles are revealed and all mines are flagged
-    if finished:
-        print(f"Congratulations, you got all the mines in {totalMoves} moves!")
-        running = False
-        continue
+    # finished = grid.checkFinished() # checks to see if all tiles are revealed and all mines are flagged
+    # if finished:
+    #     print(f"Congratulations, you got all the mines in {totalMoves} moves!")
+    #     running = False
+    #     continue
 
 
     #rendering
-    screen.fill((0,0,255))
+    screen.fill((0,0,0))
 
-    pygame.display.flip()
+    grid.draw(screen)
+
+    pygame.display.update()
 
     # command = input("Type f{x,y} for flag or c{x,y} to check").upper()
     # x = rowNum.find(command[1])
